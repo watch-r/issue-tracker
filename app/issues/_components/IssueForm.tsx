@@ -6,16 +6,13 @@ import { Issue } from "@prisma/client";
 import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { CiCircleInfo } from "react-icons/ci";
+import SimpleMDE from 'react-simplemde-editor';
 import { z } from "zod";
 
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-    ssr: false,
-});
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -37,6 +34,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             if (issue) await axios.patch("/api/issues/" + issue.id, data);
             else await axios.post("/api/issues", data);
             router.push("/issues");
+            router.refresh();
         } catch (error) {
             setSubmiting(false);
             setError("An Unexpected Error Occured!");
@@ -45,7 +43,10 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
 
     return (
         <div className='max-w-xl'>
-            <h1 className='text-2xl font-semi-bold'>Create a New Issue</h1>
+            <h1 className='text-2xl font-semi-bold mb-2'>
+                {" "}
+                {issue ? 'Update The Issue' : "Create a New Issue"}
+            </h1>
             {error && (
                 <Callout.Root className='my-2 ' color='red'>
                     <Callout.Icon>
@@ -74,7 +75,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
                 />
                 <ErrorMessage>{errors.description?.message}</ErrorMessage>
                 <Button disabled={isSubmiting}>
-                    {issue ? 'Update Issue': "Submit New Issue"}{" "}
+                    {issue ? "Update Issue" : "Submit New Issue"}{" "}
                     {isSubmiting && <Spinner />}
                 </Button>
             </form>
