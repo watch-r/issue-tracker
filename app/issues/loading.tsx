@@ -1,16 +1,12 @@
+import { Table } from "@radix-ui/themes";
 import React from "react";
-import { Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
-import prisma from "@/prisma/client";
 import IssueStatusBadge from "../components/IssueStatusBadge";
-
-// dev only
-import delay from "delay";
 import IssueActions from "./IssueActions";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const IssuePage = async () => {
-    const issues = await prisma.issue.findMany();
-    await delay(2000);
+const LoadingIssuePage = () => {
+    const issues = [1, 2, 3, 4, 5];
     return (
         <div>
             <IssueActions />
@@ -28,18 +24,18 @@ const IssuePage = async () => {
                 </Table.Header>
                 <Table.Body>
                     {issues.map((issue) => (
-                        <Table.Row key={issue.id}>
+                        <Table.Row key={issue}>
                             <Table.Cell>
-                                {issue.title}
+                                <Skeleton />
                                 <div className='block md:hidden'>
-                                    <IssueStatusBadge status={issue.status} />
+                                    <Skeleton />{" "}
                                 </div>
                             </Table.Cell>
                             <Table.Cell className='hidden md:table-cell'>
-                                <IssueStatusBadge status={issue.status} />{" "}
+                                <Skeleton />{" "}
                             </Table.Cell>
                             <Table.Cell className='hidden md:table-cell'>
-                                {issue.created_at.toDateString()}
+                                <Skeleton />{" "}
                             </Table.Cell>
                         </Table.Row>
                     ))}
@@ -49,4 +45,4 @@ const IssuePage = async () => {
     );
 };
 
-export default IssuePage;
+export default LoadingIssuePage;
