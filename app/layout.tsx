@@ -2,14 +2,13 @@ import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { AR_One_Sans } from "next/font/google";
 import NavBar from "./NavBar";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 
-const inter = Inter({
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-inter",
+const arOneSans = AR_One_Sans({
+    subsets: ["latin-ext", "latin"],
+    variable: "--font-arOneSans",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang='en'>
-            <body className={inter.variable}>
+            <body className={arOneSans.variable}>
                 <Theme accentColor='teal' grayColor='olive'>
                     <NavBar />
                     <main className='p-5'>{children}</main>

@@ -1,3 +1,5 @@
 .radix-themes {
-    --default-font-family: var(--font-inter);
+    /* --default-font-family: var(--font-inter); */
+    --default-font-family: var(--font-arOneSans) !important;
+    /* --heading-font-family: 'Montserrat', sans-serif; */
 }

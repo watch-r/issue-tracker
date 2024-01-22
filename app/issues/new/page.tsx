@@ -43,7 +43,7 @@ const NewIssuePage = () => {
 
     return (
         <div className='max-w-xl'>
-            <h1 className='text-2xl font-semi-bold'>Create a New issue</h1>
+            <h1 className='text-2xl font-semi-bold'>Create a New Issue</h1>
             {error && (
                 <Callout.Root className='my-2 ' color='red'>
                     <Callout.Icon>
