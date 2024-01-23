@@ -2,11 +2,21 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { AlertDialog, Button, Flex, Text } from "@radix-ui/themes";
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const DeleteissueButton = ({ issueId }: { issueId: number }) => {
     const router = useRouter();
+    const [error, setError] = useState(false);
+    const deleteIssue = async () => {
+        try {
+            await axios.delete("/api/issues/" + issueId);
+            router.push("/issues");
+            router.refresh();
+        } catch (error) {
+            setError(true);
+        }
+    };
     return (
         <>
             <AlertDialog.Root>
@@ -33,18 +43,28 @@ const DeleteissueButton = ({ issueId }: { issueId: number }) => {
                             <Button
                                 variant='surface'
                                 color='red'
-                                onClick={async () => {
-                                    await axios.delete(
-                                        "/api/issues/" + issueId
-                                    );
-                                    router.push("/issues");
-                                    router.refresh();
-                                }}
+                                onClick={deleteIssue}
                             >
                                 Delete
                             </Button>
                         </AlertDialog.Action>
                     </Flex>
+                </AlertDialog.Content>
+            </AlertDialog.Root>
+            <AlertDialog.Root open={error}>
+                <AlertDialog.Content>
+                    <AlertDialog.Title>Error</AlertDialog.Title>
+                    <AlertDialog.Description>
+                        This issue could not be Deleted
+                    </AlertDialog.Description>
+                    <Button
+                        mt='2'
+                        variant='surface'
+                        color='teal'
+                        onClick={() => setError(false)}
+                    >
+                        OK
+                    </Button>
                 </AlertDialog.Content>
             </AlertDialog.Root>
         </>
