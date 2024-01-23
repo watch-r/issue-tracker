@@ -4,7 +4,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { AR_One_Sans } from "next/font/google";
 import NavBar from "./NavBar";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Container, Theme, ThemePanel } from "@radix-ui/themes";
 
 const arOneSans = AR_One_Sans({
     subsets: ["latin-ext", "latin"],
@@ -26,7 +26,10 @@ export default function RootLayout({
             <body className={arOneSans.variable}>
                 <Theme accentColor='teal' grayColor='olive'>
                     <NavBar />
-                    <main className='p-5'>{children}</main>
+
+                    <main className='p-5'>
+                        <Container>{children}</Container>
+                    </main>
                     {/* <ThemePanel /> */}
                 </Theme>
             </body>
