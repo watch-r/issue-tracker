@@ -17,7 +17,8 @@ const AssigneeSelect = () => {
     }, []);
     return (
         <Select.Root>
-            <Select.Trigger placeholder='Assign... ' variant="ghost"/>
+            {/* @ts-ignore */}
+            <Select.Trigger placeholder='Assign... ' variant='ghost' />
             <Select.Content>
                 <Select.Group>
                     <Select.Label>Suggestions</Select.Label>
