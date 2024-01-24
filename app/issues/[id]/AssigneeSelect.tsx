@@ -19,7 +19,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
             .catch(() => {
                 toast.error("Changes Could not be saved");
             });
-    };
+    }; 
 
     return (
         <>
