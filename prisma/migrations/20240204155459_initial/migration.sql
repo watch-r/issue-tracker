@@ -4,7 +4,7 @@ CREATE TABLE `Issue` (
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
     `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NOT NULL,
     `assignedToUserId` VARCHAR(255) NULL,
 
