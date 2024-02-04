@@ -4,8 +4,8 @@ CREATE TABLE `Issue` (
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
     `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
-    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updated_at` DATETIME(3) NOT NULL,
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME NOT NULL,
     `assignedToUserId` VARCHAR(255) NULL,
 
     PRIMARY KEY (`id`)
@@ -57,7 +57,7 @@ CREATE TABLE `User` (
 CREATE TABLE `VerificationToken` (
     `identifier` VARCHAR(191) NOT NULL,
     `token` VARCHAR(191) NOT NULL,
-    `expires` DATETIME(3) NOT NULL,
+    `expires` DATETIME NOT NULL,
 
     UNIQUE INDEX `VerificationToken_token_key`(`token`),
     UNIQUE INDEX `VerificationToken_identifier_token_key`(`identifier`, `token`)
