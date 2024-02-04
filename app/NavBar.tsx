@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiBugBeetleFill } from "react-icons/pi";
-
+ 
 const NavBar = () => {
     return (
         <nav className=' border-b px-5 mb-5 py-3 '>
